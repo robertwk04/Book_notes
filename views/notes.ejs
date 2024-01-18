@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= book.title %></title>
+    <link type="text/css" rel="stylesheet"  href="/style/ratingicons.css">
+</head>
+<body>
+    <div class="bookcard">
+        <img src=<%= book.image %> alt="Book Cover" style="width: 150px;">
+        <h2 class="title"><%= book.title %></h2>
+        <h3 class="author"><%= book.author %></h3>
+        <h4 class="gen">Gen: <%= book.gen %></h4>
+        <div class="rating">
+         <% for(let i=0;i<book.rating;i++) {%>
+            <i class="star_active"></i>
+         <%}for(i=book.rating;i<5;i++){%>
+             <i class="star_inactive"></i>
+            <% } %>
+        </div>
+        <h4 class="nationality"><%= book.nationality %></h4>
+        <h4 class="year"><%= book.year %></h4>
+        <p class="description"><%= book.description %></p>
+        <a href="/"><button>Inapoi</button></a>
+        <form action="addnote/<%=book.id %>" method="post">
+            <input type="text" name="noteText">
+            <input type="submit" value="Submit">
+        </form>
+        <hr>
+    </div>
+    <ul>
+        <% notes.forEach(note => { if(note.book_id==book.id) {%>
+        <li>
+         <%= note.note %>
+         <form action="delete/<%= note.book_id %>/<%= note.id %>" method="post"><button type="submit">Delete</button></form>
+        </li>
+        <% }}); %>
+    </ul>
+</body>
+</html>
