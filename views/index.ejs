@@ -5,34 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books & Notes</title>
     <link rel="stylesheet" type="text/css" href="./style/ratingicons.css">
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 </head>
 <body>
   <form action="/new">
-    <button type="submit">Adauga Carte</button>
+    <button type="submit" class="btn add">Adauga Carte</button>
   </form>
-   <section id="books">
+
+  <section id="books">
     <% books.forEach(book => { %>
+
     <div class="bookcard">
-        <img src=<%= book.image %> alt="Book Cover" style="width: 150px;">
-        <h2 class="title"><%= book.title %></h2>
-        <h3 class="author"><%= book.author %></h3>
-        <h4 class="gen">Gen: <%= book.type %></h4>
-        <div class="rating">
-         <% for(let i=0;i<book.rating;i++) {%>
+
+      <div class="section1">
+       <div class="cover">
+        <img src=<%= book.image %> alt="Book Cover" class="coverimg">
+       </div>
+
+       <div class="bookinfo">
+         <h2 class="title"><%= book.title %> - <span class="author"><%= book.author %></span></h2>
+         <h4 class="gen">Gen: <%= book.type %></h4>
+         <div class="rating">
+           <% for(let i=0;i<book.rating;i++) {%>
             <i class="star_active"></i>
-         <%}for(i=book.rating;i<5;i++){%>
+           <%}for(i=book.rating;i<5;i++){%>
              <i class="star_inactive"></i>
             <% } %>
-        </div>
-        <h4 class="nationality"><%= book.nationality %></h4>
-        <h4 class="year"><%= book.year %></h4>
-        <p class="description"><%= book.description %></p>
-        <a href="/notes/<%=book.title.replace(/ /g, '_')%>"><button>Vezi Notele</button></a>
-        <a href="/edit/<%=book.title.replace(/ /g, '_')%>"><button>Editeaza</button></a>
-        <form action="/delete/<%=book.id%>" method="post"><button type="submit">Delete</button></form>
-        <hr>
+         </div>
+         <h4 class="nationality">- <%= book.nationality %> -</h4>
+         <h4 class="year"><%= book.year %></h4>
+         <p class="description"><%= book.description %></p>
+       </div>
+      </div>
+
+      <div class="section2">
+        <a href="/notes/<%=book.title.replace(/ /g, '_')%>"><button class="btn">Vezi Notele</button></a>
+        <a href="/edit/<%=book.title.replace(/ /g, '_')%>"><button class="btn">Editeaza</button></a>
+        <form action="/delete/<%=book.id%>" method="post"><button type="submit" class="btn">Delete</button></form>
+      </div>
+
     </div>
     <% }); %>
-   </section>
+
+  </section>
 </body>
 </html>

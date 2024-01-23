@@ -1,0 +1,9 @@
+black: #151515
+yellow: #E9B872
+red: #A63D40
+green: #90A959
+blue: #6494AA
+theme:dark
+cards:gray
+stars:yellow
+button text:blue

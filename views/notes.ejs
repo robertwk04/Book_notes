@@ -5,35 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= book.title %></title>
     <link type="text/css" rel="stylesheet"  href="/style/ratingicons.css">
+    <link type="text/css" rel="stylesheet" href="/style/main.css">
+    <link type="text/css" rel="stylesheet" href="/style/notes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 </head>
 <body>
+        
     <div class="bookcard">
-        <img src=<%= book.image %> alt="Book Cover" style="width: 150px;">
-        <h2 class="title"><%= book.title %></h2>
-        <h3 class="author"><%= book.author %></h3>
-        <h4 class="gen">Gen: <%= book.gen %></h4>
-        <div class="rating">
-         <% for(let i=0;i<book.rating;i++) {%>
-            <i class="star_active"></i>
-         <%}for(i=book.rating;i<5;i++){%>
-             <i class="star_inactive"></i>
-            <% } %>
+        <div class="section1">
+         <div class="cover">
+          <img src=<%= book.image %> alt="Book Cover" class="coverimg">
+         </div>
+  
+         <div class="bookinfo">
+           <h2 class="title"><%= book.title %> - <span class="author"><%= book.author %></span></h2>
+           <h4 class="gen">Gen: <%= book.type %></h4>
+           <div class="rating">
+             <% for(let i=0;i<book.rating;i++) {%>
+              <i class="star_active"></i>
+             <%}for(i=book.rating;i<5;i++){%>
+               <i class="star_inactive"></i>
+              <% } %>
+           </div>
+           <h4 class="nationality"><%= book.nationality %></h4>
+           <h4 class="year"><%= book.year %></h4>
+           <p class="description"><%= book.description %></p>
+         </div>
         </div>
-        <h4 class="nationality"><%= book.nationality %></h4>
-        <h4 class="year"><%= book.year %></h4>
-        <p class="description"><%= book.description %></p>
-        <a href="/"><button>Inapoi</button></a>
-        <form action="addnote/<%=book.id %>" method="post">
-            <input type="text" name="noteText">
-            <input type="submit" value="Submit">
-        </form>
-        <hr>
-    </div>
-    <ul>
+  
+        <div class="section2">
+            <a href="/"><button class="btn">Inapoi</button></a>
+            <form action="addnote/<%=book.id %>" method="post">
+                <textarea type="text" name="noteText" class="inp" placeholder=" Add new note"></textarea>
+                <input type="submit" value=">" class="submit">
+            </form>
+        </div>
+  
+      </div>
+    
+    <ul class="notes bookcard">
         <% notes.forEach(note => { if(note.book_id==book.id) {%>
-        <li>
-         <%= note.note %>
-         <form action="delete/<%= note.book_id %>/<%= note.id %>" method="post"><button type="submit">Delete</button></form>
+        <li class="notecard">
+         <%= note.note_text %>
+         <form action="delete/<%= note.book_id %>/<%= note.id %>" method="post"><button type="submit" class="btn delete">Delete</button></form>
         </li>
         <% }}); %>
     </ul>

@@ -4,47 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New book</title>
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/newbook.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 </head>
 <body>
     <% if(!(locals.content)) {%>
-    <form action="/add" method="post">
+    <form action="/add" method="post" class="form new">
         <label for="title">Titlu:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="title" required class="inp">
         <label for="author">Autor:</label>
-        <input type="text" id="author" name="author" required>
+        <input type="text" id="author" name="author" required class="inp">
         <label for="nationality">Nationalitate:</label>
-        <input type="text" id="nationality" name="nationality" required>
+        <input type="text" id="nationality" name="nationality" required class="inp">
         <label for="type">Genul Cartii:</label>
-        <input type="text" id="type" name="type" placeholder="ex:Aventura" required>
+        <input type="text" id="type" name="type" placeholder="ex:Aventura" required class="inp">
         <label for="description">Descriere pe scurt:</label>
-        <input type="text" id="description" name="description" required>
+        <textarea type="text" id="description" name="description" required class="inp" rows="3"></textarea>
         <label for="rating">Rating(1 to 5):</label>
-        <input type="number" min="1" max="5" id="rating" name="rating">
+        <input type="number" min="1" max="5" id="rating" name="rating" class="inp">
         <label for="year">Anul aparitiei:</label>
-        <input type="number" min="1000" max="<%= new Date().getFullYear() %>" id="year" name="year" required>
+        <input type="number" min="1000" max="<%= new Date().getFullYear() %>" id="year" name="year" required class="inp">
         <label for="image">Linkul Imaginii:</label>
-        <input type="text" id="image" name="image" required>
-        <button type="submit">Adauga</button>
+        <input type="text" id="image" name="image" required class="inp">
+        <div class="buttons">
+            <a href="/" ><button class="btn submit" formnovalidate>Inapoi</button></a>
+             <button type="submit" class="btn submit">Adauga</button>
+        </div>
+       
     </form>
     <% }else{ %> 
-    <form action="/save/<%=content.id %>" method="post">
+    <form action="/save/<%=content.id %>" method="post" class="form edit"> 
         <label for="title">Titlu:</label>
-        <input type="text" id="title" name="title" required value="<%= content.title%>">
+        <input type="text" id="title" name="title" required value="<%= content.title%>" class="inp">
         <label for="author">Autor:</label>
-        <input type="text" id="author" name="author" required value="<%= content.author%>">
+        <input type="text" id="author" name="author" required value="<%= content.author%>" class="inp">
         <label for="nationality">Nationalitate:</label>
-        <input type="text" id="nationality" name="nationality" required value="<%= content.nationality%>">
+        <input type="text" id="nationality" name="nationality" required value="<%= content.nationality%>" class="inp">
         <label for="type">Genul Cartii:</label>
-        <input type="text" id="type" name="type" placeholder="ex:Aventura" required value="<%= content.type%>">
+        <input type="text" id="type" name="type" placeholder="ex:Aventura" required value="<%= content.type%>" class="inp">
         <label for="description">Descriere pe scurt:</label>
-        <input type="text" id="description" name="description" required value="<%= content.description%>">
+        <textarea type="text" id="description" name="description" required  class="inp"><%= content.description %></textarea>
         <label for="rating">Rating(1 to 5):</label>
-        <input type="number" min="1" max="5" id="rating" name="rating" required value="<%= content.rating%>">
+        <input type="number" min="1" max="5" id="rating" name="rating" required value="<%= content.rating%>" class="inp">
         <label for="year">Anul aparitiei:</label>
-        <input type="number" min="1000" max="<%= new Date().getFullYear() %>" id="year" name="year" required value="<%= content.year%>">
+        <input type="number" min="1000" max="<%= new Date().getFullYear() %>" id="year" name="year" required value="<%= content.year%>" class="inp">
         <label for="image">Linkul Imaginii:</label>
-        <input type="text" id="image" name="image" required value="<%= content.image%>">
-        <button type="submit">Salveaza</button>
+        <input type="text" id="image" name="image" required value="<%= content.image%>" class="inp">
+        <button type="submit" class="btn submit">Salveaza</button> 
     </form>
     <% } %>
 </body>

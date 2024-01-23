@@ -1,0 +1,74 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #151515;
+}
+h1,h2,h3,h4,p{
+    color:rgb(255, 255, 255);
+}
+.bookcard{
+    display: flex;
+    flex-direction: column;
+    margin:30px;
+    background-color: #2c2c2c;
+}
+.section1{
+    margin: 20px;
+    display:flex;
+}
+.section2{
+    margin: 20px;
+    display:flex;
+    justify-content: space-around;
+}
+.cover{
+   padding: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.coverimg{
+    width: 250px;
+}
+.bookinfo{
+    padding: 30px;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+}
+.btn.add{
+    margin-left: 8%;
+}
+.btn{
+    border: none;
+    color:white;
+    background-color: #6494AA;
+    height: 50px;
+    width: 120px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 5px 5px 5px #151515;
+}
+.btn:hover {
+    border:1px solid white;
+}
+.title{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+}
+.author{
+    color: #6494AA;
+}
+
+@media screen and (max-width: 780px) {
+    .section1{
+        flex-direction: column;
+    }
+   .bookcard{
+    margin:3px;
+    margin-bottom: 10px;
+   }
+   .btn{
+    width: 110px;
+   }
+}
