@@ -2,15 +2,20 @@ import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 import pg from "pg";
+import env from "dotenv"
+
 const app = express()
 const port = 3000;
+env.config();
+
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "books",
-  password: "icanbeaprogramer",
-  port: 5432,
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
 });
+
 db.connect();
 let books=[{}];
 async function updateBooks() {
